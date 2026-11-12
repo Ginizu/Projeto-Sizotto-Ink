@@ -1,0 +1,14 @@
+:root {
+  --marrom: #1C0A00;
+  --creme: #EEEADB;
+  --vinho: #5E0000;
+  --branco: #FFFFFF;
+
+  --font-title: "Bodoni Moda", "Playfair Display", Georgia, serif;
+  --font-text: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius: 16px;
+  --radius-btn: 12px;
+  --space-section: clamp(56px, 9vw, 110px);
+  --nav-h: 64px;
+}
