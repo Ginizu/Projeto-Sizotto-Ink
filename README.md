@@ -1,0 +1,127 @@
+# Sizotto INK
+
+Site do estúdio de tatuagem **Sizotto INK**, da tatuadora Gabriela Sizotto (fineline e blackwork), em São Bernardo do Campo, SP.
+
+O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flashes disponíveis, e leva o visitante a pedir orçamento e agendar.
+
+> Status: **MVP em desenvolvimento**. A Home (Fase 1) está pronta; galerias, catálogo e orçamento estão nas próximas fases.
+
+## Objetivos
+
+- Alavancar as vendas do estúdio mostrando o portfólio
+- Facilitar orçamentos e agendamentos
+- Exibir o catálogo de tatuagens disponíveis (flashes)
+- Redirecionar para Instagram e TikTok (`@sizotto.ink`)
+- Ser encontrado no Google (SEO local)
+
+## Requisitos
+
+| ID | Requisito |
+| --- | --- |
+| RF01 | Agendamento de horários para clientes |
+| RF02 | Catálogo de tatuagens disponíveis |
+| RF03 | Redirecionamento para redes sociais |
+| RNF01 | A página deve carregar em menos de 2 segundos |
+
+O PRD completo está documentado no Confluence/Claude Docs do projeto.
+
+## Tecnologias
+
+- HTML5 semântico, CSS3 (variáveis, Grid e Flexbox) e JavaScript puro
+- Sem frameworks e sem bibliotecas pesadas
+- Fontes: Bodoni Moda (títulos) e Montserrat (textos), via Google Fonts
+- Hospedagem: [Vercel](https://vercel.com)
+
+## Design
+
+| Elemento | Valor |
+| --- | --- |
+| Marrom | `#1C0A00` |
+| Creme | `#EEEADB` |
+| Vinho | `#5E0000` |
+| Títulos | Bodoni Moda |
+| Textos | Montserrat, caixa alta, com espaçamento entre letras |
+
+Mobile-first, contraste AA e animações discretas (respeita `prefers-reduced-motion`).
+
+## Estrutura
+
+```text
+sizotto-ink/
+├── index.html
+├── fineline.html        (em breve)
+├── blackwork.html       (em breve)
+├── disponiveis.html     (em breve)
+├── orcamento.html       (em breve)
+├── css/
+│   ├── variables.css
+│   ├── base.css
+│   └── components.css
+├── js/
+│   └── main.js
+├── img/
+│   ├── hero-corrente.webp
+│   ├── estudio.webp
+│   ├── fineline-snoopy.webp
+│   ├── blackwork-leme.webp
+│   └── flash-tigre.webp
+├── robots.txt           (em breve)
+├── sitemap.xml          (em breve)
+└── vercel.json          (em breve)
+```
+
+## Como rodar localmente
+
+Não há etapa de build. Basta servir a pasta:
+
+```bash
+# Opção 1: Python
+python3 -m http.server 3000
+
+# Opção 2: Node
+npx serve .
+```
+
+Abra `http://localhost:3000`.
+
+Ou use a extensão **Live Server** no VSCode.
+
+## Deploy na Vercel
+
+1. Envie o repositório para o GitHub.
+2. Na Vercel, clique em **Add New > Project** e importe o repositório.
+3. Framework Preset: **Other**. Não precisa de build command nem output directory.
+4. Cada `git push` na branch `main` publica automaticamente; cada branch gera um preview.
+
+## Desempenho e SEO
+
+- Meta: carregar em menos de 2 s (LCP ≤ 2 s em 4G; Lighthouse Performance ≥ 90)
+- Imagens em WebP, com `width` e `height`, `loading="lazy"` (exceto o hero) e até 200 KB cada
+- `title` e `meta description` por página, Open Graph, JSON-LD `TattooParlor`, `sitemap.xml` e `robots.txt`
+- Idioma `pt-BR`
+
+Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pagespeed.web.dev/) a cada deploy.
+
+## Roadmap
+
+- [x] Fase 0: preparação
+- [x] Fase 1: Home
+- [ ] Fase 2: galerias (`/fineline`, `/blackwork`) e catálogo de flashes (`/disponiveis`), com lightbox
+- [ ] Fase 3: orçamento e agendamento (formulário + abertura da DM no Instagram; Cal.com ou Calendly)
+- [ ] Fase 4: SEO e desempenho (sitemap, Search Console, Perfil da Empresa no Google)
+- [ ] Fase 5: testes com clientes e lançamento
+
+## Observações
+
+- Os orçamentos são feitos somente pelo Instagram ([@sizotto.ink](https://www.instagram.com/sizotto.ink)); o formulário do site apenas organiza o briefing.
+- As fotos do portfólio são trabalhos da tatuadora; use-as somente com autorização das clientes.
+- Domínio provisório no SEO: `sizottoink.com.br`. Atualize quando for definido.
+
+## Contato
+
+- Instagram: [@sizotto.ink](https://www.instagram.com/sizotto.ink)
+- TikTok: [@sizotto.ink](https://www.tiktok.com/@sizotto.ink)
+
+## Licença
+
+Todos os direitos reservados © Sizotto INK. O código e as imagens não podem ser copiados ou reutilizados sem autorização.
