@@ -6,7 +6,7 @@ O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flash
 
 **Site no ar:** [sizottoink.vercel.app](https://sizottoink.vercel.app/)
 
-> Status: **MVP em desenvolvimento**. Home (Fase 1), galerias com catálogo de flashes (Fase 2) e página de orçamento (Fase 3) estão prontas. Faltam a agenda online (Cal.com), o SEO técnico e o lançamento.
+> Status: **MVP em desenvolvimento**. Home (Fase 1), galerias com catálogo de flashes (Fase 2), página de orçamento (Fase 3) e SEO técnico (Fase 4) estão prontos. Faltam ativar a agenda Cal.com, concluir o Search Console e o Perfil da Empresa no Google, medir o Lighthouse e lançar.
 
 ## Objetivos
 
@@ -93,6 +93,11 @@ sizotto-ink/
 ├── blackwork.html
 ├── disponiveis.html
 ├── orcamento.html
+├── 404.html                 (página de erro, não indexada)
+├── favicon.svg
+├── robots.txt
+├── sitemap.xml
+├── vercel.json              (cache e cabeçalhos de segurança)
 ├── css/
 │   ├── variables.css
 │   ├── base.css
@@ -104,14 +109,12 @@ sizotto-ink/
 │   ├── gallery.js           (lightbox)
 │   └── form.js              (validação, resumo, cópia, Instagram, Cal.com)
 ├── img/
+│   ├── og-capa.jpg          (1200x630, imagem ao compartilhar o link)
 │   ├── hero-corrente.webp
 │   ├── estudio.webp
 │   ├── fineline-*.webp      (fada, morango, bone, snoopy, continue-a-nadar, forte-como-um-1950)
 │   ├── blackwork-*.webp     (leme, correntes, personagem-escudo, coracao-olho, espada-fogueira, oni)
 │   └── flash-*.webp         (tigre, tucano, onca-e-pantera, onca-coracoes)
-├── robots.txt               (em breve)
-├── sitemap.xml              (em breve)
-└── vercel.json              (em breve)
 ```
 
 ## Como rodar localmente
@@ -148,11 +151,34 @@ Ou use a extensão **Live Server** no VSCode.
 
 - Meta: carregar em menos de 2 s (LCP ≤ 2 s em 4G; Lighthouse Performance ≥ 90)
 - Imagens em WebP, com `width` e `height`, `loading="lazy"` (exceto o hero) e até 200 KB cada
-- `title`, `meta description`, canonical e Open Graph únicos em cada página
-- JSON-LD `TattooParlor` na Home; `sitemap.xml` e `robots.txt` na Fase 4
+- `title` (até 60 caracteres), `meta description`, canonical e Open Graph únicos em cada página
+- Imagem de compartilhamento `img/og-capa.jpg` (1200x630, JPG, para WhatsApp e Instagram)
+- JSON-LD: `WebSite` e `TattooParlor` na Home; `BreadcrumbList` nas demais páginas
+- `sitemap.xml` com as 5 páginas e `robots.txt` apontando para ele
+- `vercel.json`: cache de 30 dias para `img/`, de 1 dia para `css/` e `js/`, e cabeçalhos de segurança
+- Fonte Bodoni Moda carregada só no peso usado; `font-display: swap`
+- `404.html` com `noindex` e `favicon.svg`
 - Idioma `pt-BR`
 
 Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pagespeed.web.dev/) a cada deploy.
+
+### Checklist de lançamento (feito por você, na sua conta Google)
+
+1. **Publicar os arquivos:** envie ao GitHub `robots.txt`, `sitemap.xml`, `vercel.json`, `favicon.svg`, `404.html` e `img/og-capa.jpg`, além das páginas e CSS atualizados.
+2. **Lighthouse:** no Chrome, abra cada página, DevTools > Lighthouse > Mobile > Analisar. Metas: Performance ≥ 90, Accessibility ≥ 90, SEO ≥ 95. Se o Performance ficar abaixo, o primeiro suspeito são imagens acima de 200 KB.
+3. **Search Console** ([search.google.com/search-console](https://search.google.com/search-console)):
+   1. Adicionar propriedade > **Prefixo do URL** > `https://sizottoink.vercel.app/`.
+   2. Método **Tag HTML**: cole a meta tag no `<head>` do `index.html`, no lugar do comentário, faça `git push` e clique em Verificar.
+   3. Em **Sitemaps**, envie `sitemap.xml`.
+   4. Em **Inspeção de URL**, teste a Home e clique em **Solicitar indexação**.
+4. **Perfil da Empresa no Google** ([business.google.com](https://business.google.com)):
+   1. Nome exatamente **Sizotto INK**; categoria principal **Estúdio de tatuagem**.
+   2. Endereço no centro de São Bernardo do Campo. Se o estúdio não for aberto a visitas sem hora marcada, configure como atendimento com hora marcada e decida se o endereço fica público.
+   3. Horário de atendimento, site `https://sizottoink.vercel.app/`, Instagram e fotos do portfólio e do estúdio.
+   4. Descrição com os termos naturais do serviço (fineline, blackwork, flashes, São Bernardo do Campo) e conclusão da verificação pedida pelo Google (vídeo ou código).
+5. **Links:** coloque o endereço do site na bio do Instagram e do TikTok.
+6. **Completar o JSON-LD** na Home quando houver endereço, telefone e horários definidos: `streetAddress`, `postalCode`, `telephone` e `openingHours`.
+7. **Acompanhar:** consulte o desempenho no Search Console depois de 2 a 4 semanas; a indexação não é imediata.
 
 ## Roadmap
 
@@ -161,7 +187,8 @@ Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pages
 - [x] Fase 2: galerias (`fineline.html`, `blackwork.html`), catálogo de flashes (`disponiveis.html`) e lightbox
 - [x] Fase 3: página de orçamento (formulário, resumo, abertura do Instagram e espaço para o Cal.com)
 - [ ] Ativar a agenda Cal.com (preencher `data-cal-url`)
-- [ ] Fase 4: SEO e desempenho (sitemap, robots, Search Console, Perfil da Empresa no Google)
+- [x] Fase 4 (código): metadados, JSON-LD, sitemap, robots, cache, favicon, 404 e imagem de compartilhamento
+- [ ] Fase 4 (sua parte): Lighthouse ≥ 90 medido, Search Console e Perfil da Empresa no Google (ver checklist)
 - [ ] Fase 5: testes com clientes e lançamento
 
 ## Observações
