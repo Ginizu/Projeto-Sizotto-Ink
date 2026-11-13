@@ -4,7 +4,9 @@ Site do estúdio de tatuagem **Sizotto INK**, da tatuadora Gabriela Sizotto (fin
 
 O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flashes disponíveis, e leva o visitante a pedir orçamento e agendar.
 
-> Status: **MVP em desenvolvimento**. A Home (Fase 1) está pronta; galerias, catálogo e orçamento estão nas próximas fases.
+**Site no ar:** [sizottoink.vercel.app](https://sizottoink.vercel.app/)
+
+> Status: **MVP em desenvolvimento**. Home (Fase 1) e galerias com catálogo de flashes (Fase 2) estão prontas; orçamento e agendamento estão na próxima fase.
 
 ## Objetivos
 
@@ -16,14 +18,32 @@ O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flash
 
 ## Requisitos
 
-| ID | Requisito |
-| --- | --- |
-| RF01 | Agendamento de horários para clientes |
-| RF02 | Catálogo de tatuagens disponíveis |
-| RF03 | Redirecionamento para redes sociais |
-| RNF01 | A página deve carregar em menos de 2 segundos |
+| ID | Requisito | Status |
+| --- | --- | --- |
+| RF01 | Agendamento de horários para clientes | Fase 3 |
+| RF02 | Catálogo de tatuagens disponíveis | Pronto (`disponiveis.html`) |
+| RF03 | Redirecionamento para redes sociais | Pronto (Instagram e TikTok) |
+| RNF01 | A página deve carregar em menos de 2 segundos | A medir com Lighthouse |
 
 O PRD completo está documentado no Confluence/Claude Docs do projeto.
+
+## Páginas
+
+| Página | Arquivo | Conteúdo |
+| --- | --- | --- |
+| Home | `index.html` | Hero, Trajetória, Estúdio, Portfólio, promoção "Ganhe uma tattoo" e Contato |
+| Fineline | `fineline.html` | Galeria de tatuagens fineline |
+| Blackwork e outros | `blackwork.html` | Galeria de blackwork e outros estilos |
+| Disponíveis | `disponiveis.html` | Catálogo de flashes, cada um com o botão "Quero este flash" |
+| Orçamento | `orcamento.html` | Em breve (Fase 3) |
+
+### Galerias e lightbox
+
+- Grade de 2 colunas no celular e 3 no desktop; os flashes usam 4 colunas no desktop
+- Lightbox em JavaScript puro: abre ao tocar na foto, fecha com Esc, com o X ou clicando no fundo
+- Navegação por setas do teclado ou deslizando no celular
+- Lazy loading e texto alternativo descritivo em todas as imagens
+- Em `disponiveis.html`, "Quero este flash" leva a `orcamento.html?flash=<nome>` (`tigre`, `tucano`, `onca-e-pantera`, `onca-coracoes`)
 
 ## Tecnologias
 
@@ -49,25 +69,27 @@ Mobile-first, contraste AA e animações discretas (respeita `prefers-reduced-mo
 ```text
 sizotto-ink/
 ├── index.html
-├── fineline.html        (em breve)
-├── blackwork.html       (em breve)
-├── disponiveis.html     (em breve)
-├── orcamento.html       (em breve)
+├── fineline.html
+├── blackwork.html
+├── disponiveis.html
+├── orcamento.html           (em breve)
 ├── css/
 │   ├── variables.css
 │   ├── base.css
-│   └── components.css
+│   ├── components.css
+│   └── gallery.css
 ├── js/
-│   └── main.js
+│   ├── main.js              (menu, botão flutuante, animações)
+│   └── gallery.js           (lightbox)
 ├── img/
 │   ├── hero-corrente.webp
 │   ├── estudio.webp
-│   ├── fineline-snoopy.webp
-│   ├── blackwork-leme.webp
-│   └── flash-tigre.webp
-├── robots.txt           (em breve)
-├── sitemap.xml          (em breve)
-└── vercel.json          (em breve)
+│   ├── fineline-*.webp      (fada, morango, bone, snoopy, continue-a-nadar, forte-como-um-1950)
+│   ├── blackwork-*.webp     (leme, correntes, personagem-escudo, coracao-olho, espada-fogueira, oni)
+│   └── flash-*.webp         (tigre, tucano, onca-e-pantera, onca-coracoes)
+├── robots.txt               (em breve)
+├── sitemap.xml              (em breve)
+└── vercel.json              (em breve)
 ```
 
 ## Como rodar localmente
@@ -86,6 +108,13 @@ Abra `http://localhost:3000`.
 
 Ou use a extensão **Live Server** no VSCode.
 
+## Como adicionar fotos às galerias
+
+1. Converta a imagem para WebP (até 200 KB) e salve em `img/` com um nome descritivo, por exemplo `fineline-rosa.webp`.
+2. Copie um item `<li>` da galeria em `fineline.html`, `blackwork.html` ou `disponiveis.html` e troque `src` e `alt`.
+3. Nos flashes, defina também `data-flash="nome"` no botão e o mesmo nome no link `orcamento.html?flash=nome`.
+4. Faça `git push`: a Vercel publica automaticamente.
+
 ## Deploy na Vercel
 
 1. Envie o repositório para o GitHub.
@@ -97,7 +126,8 @@ Ou use a extensão **Live Server** no VSCode.
 
 - Meta: carregar em menos de 2 s (LCP ≤ 2 s em 4G; Lighthouse Performance ≥ 90)
 - Imagens em WebP, com `width` e `height`, `loading="lazy"` (exceto o hero) e até 200 KB cada
-- `title` e `meta description` por página, Open Graph, JSON-LD `TattooParlor`, `sitemap.xml` e `robots.txt`
+- `title`, `meta description`, canonical e Open Graph únicos em cada página
+- JSON-LD `TattooParlor` na Home; `sitemap.xml` e `robots.txt` na Fase 4
 - Idioma `pt-BR`
 
 Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pagespeed.web.dev/) a cada deploy.
@@ -106,16 +136,17 @@ Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pages
 
 - [x] Fase 0: preparação
 - [x] Fase 1: Home
-- [ ] Fase 2: galerias (`/fineline`, `/blackwork`) e catálogo de flashes (`/disponiveis`), com lightbox
+- [x] Fase 2: galerias (`fineline.html`, `blackwork.html`), catálogo de flashes (`disponiveis.html`) e lightbox
 - [ ] Fase 3: orçamento e agendamento (formulário + abertura da DM no Instagram; Cal.com ou Calendly)
-- [ ] Fase 4: SEO e desempenho (sitemap, Search Console, Perfil da Empresa no Google)
+- [ ] Fase 4: SEO e desempenho (sitemap, robots, Search Console, Perfil da Empresa no Google)
 - [ ] Fase 5: testes com clientes e lançamento
 
 ## Observações
 
 - Os orçamentos são feitos somente pelo Instagram ([@sizotto.ink](https://www.instagram.com/sizotto.ink)); o formulário do site apenas organiza o briefing.
+- Os botões "Faça um orçamento!", "Agende sua tattoo" e "Quero este flash" levam a `orcamento.html`, que será criada na Fase 3.
 - As fotos do portfólio são trabalhos da tatuadora; use-as somente com autorização das clientes.
-- Domínio provisório no SEO: `sizottoink.com.br`. Atualize quando for definido.
+- Se o site ganhar um domínio próprio, atualize o canonical, o Open Graph e o JSON-LD, hoje apontando para `sizottoink.vercel.app`.
 
 ## Contato
 
@@ -124,4 +155,4 @@ Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pages
 
 ## Licença
 
-Todos os direitos reservados © Sizotto INK. O código e as imagens não podem ser copiados ou reutilizados sem autorização.
+Todos os direitos reservados 2026 © Sizotto INK. O código e as imagens não podem ser copiados ou reutilizados sem autorização.
