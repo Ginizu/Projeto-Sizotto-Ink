@@ -6,7 +6,7 @@ O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flash
 
 **Site no ar:** [sizottoink.vercel.app](https://sizottoink.vercel.app/)
 
-> Status: **MVP em desenvolvimento**. Home (Fase 1) e galerias com catálogo de flashes (Fase 2) estão prontas; orçamento e agendamento estão na próxima fase.
+> Status: **MVP em desenvolvimento**. Home (Fase 1), galerias com catálogo de flashes (Fase 2) e página de orçamento (Fase 3) estão prontas. Faltam a agenda online (Cal.com), o SEO técnico e o lançamento.
 
 ## Objetivos
 
@@ -20,7 +20,7 @@ O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flash
 
 | ID | Requisito | Status |
 | --- | --- | --- |
-| RF01 | Agendamento de horários para clientes | Fase 3 |
+| RF01 | Agendamento de horários para clientes | Formulário de orçamento pronto; agenda Cal.com a ativar |
 | RF02 | Catálogo de tatuagens disponíveis | Pronto (`disponiveis.html`) |
 | RF03 | Redirecionamento para redes sociais | Pronto (Instagram e TikTok) |
 | RNF01 | A página deve carregar em menos de 2 segundos | A medir com Lighthouse |
@@ -35,7 +35,7 @@ O PRD completo está documentado no Confluence/Claude Docs do projeto.
 | Fineline | `fineline.html` | Galeria de tatuagens fineline |
 | Blackwork e outros | `blackwork.html` | Galeria de blackwork e outros estilos |
 | Disponíveis | `disponiveis.html` | Catálogo de flashes, cada um com o botão "Quero este flash" |
-| Orçamento | `orcamento.html` | Em breve (Fase 3) |
+| Orçamento | `orcamento.html` | Formulário de orçamento e espaço para a agenda Cal.com |
 
 ### Galerias e lightbox
 
@@ -44,6 +44,26 @@ O PRD completo está documentado no Confluence/Claude Docs do projeto.
 - Navegação por setas do teclado ou deslizando no celular
 - Lazy loading e texto alternativo descritivo em todas as imagens
 - Em `disponiveis.html`, "Quero este flash" leva a `orcamento.html?flash=<nome>` (`tigre`, `tucano`, `onca-e-pantera`, `onca-coracoes`)
+
+### Orçamento
+
+- **Campos:** nome, flash (opcional), ideia, região do corpo, tamanho em cm, link de referência (opcional), disponibilidade e confirmação de 18 anos ou mais
+- **Validação** em JavaScript, com mensagem de erro em cada campo e foco no primeiro campo inválido
+- **Flash pela URL:** `orcamento.html?flash=tigre` já abre com o flash selecionado; nomes desconhecidos são ignorados. Com um flash escolhido, a ideia deixa de ser obrigatória
+- **Ao enviar:** mostra o resumo, copia para a área de transferência e abre o perfil `instagram.com/sizotto.ink`. A cliente toca em "Mensagem" e cola o texto
+- **Conversa direta:** o botão "Abrir conversa direta" usa `ig.me/m/sizotto.ink`, que pode ser lento ou bloqueado em algumas redes, por isso não é o caminho principal
+- **Privacidade:** nenhum dado é enviado a servidor; o formulário só monta a mensagem no aparelho da cliente
+
+#### Ativar a agenda Cal.com
+
+1. Crie o evento no [Cal.com](https://cal.com) (por exemplo, `cal.com/seu-usuario/tatuagem`).
+2. Em `orcamento.html`, preencha o atributo `data-cal-url` do `<div id="agenda">`:
+
+   ```html
+   <div class="agenda" id="agenda" data-cal-url="https://cal.com/seu-usuario/tatuagem">
+   ```
+
+3. O iframe é criado sozinho e carrega só quando a página chega até ele. Apenas endereços `cal.com` são aceitos.
 
 ## Tecnologias
 
@@ -62,7 +82,7 @@ O PRD completo está documentado no Confluence/Claude Docs do projeto.
 | Títulos | Bodoni Moda |
 | Textos | Montserrat, caixa alta, com espaçamento entre letras |
 
-Mobile-first, contraste AA e animações discretas (respeita `prefers-reduced-motion`).
+Mobile-first, contraste AA e animações discretas (respeita `prefers-reduced-motion`). Títulos e textos têm uma sombra leve para melhorar a leitura sobre fotos e sobre o fundo creme.
 
 ## Estrutura
 
@@ -72,15 +92,17 @@ sizotto-ink/
 ├── fineline.html
 ├── blackwork.html
 ├── disponiveis.html
-├── orcamento.html           (em breve)
+├── orcamento.html
 ├── css/
 │   ├── variables.css
 │   ├── base.css
 │   ├── components.css
-│   └── gallery.css
+│   ├── gallery.css          (páginas de galeria, lightbox)
+│   └── form.css             (formulário, resumo e agenda)
 ├── js/
 │   ├── main.js              (menu, botão flutuante, animações)
-│   └── gallery.js           (lightbox)
+│   ├── gallery.js           (lightbox)
+│   └── form.js              (validação, resumo, cópia, Instagram, Cal.com)
 ├── img/
 │   ├── hero-corrente.webp
 │   ├── estudio.webp
@@ -112,7 +134,7 @@ Ou use a extensão **Live Server** no VSCode.
 
 1. Converta a imagem para WebP (até 200 KB) e salve em `img/` com um nome descritivo, por exemplo `fineline-rosa.webp`.
 2. Copie um item `<li>` da galeria em `fineline.html`, `blackwork.html` ou `disponiveis.html` e troque `src` e `alt`.
-3. Nos flashes, defina também `data-flash="nome"` no botão e o mesmo nome no link `orcamento.html?flash=nome`.
+3. Nos flashes, defina também `data-flash="nome"` no botão e o mesmo nome no link `orcamento.html?flash=nome`. Para o flash aparecer na lista do formulário, adicione também uma `<option>` com esse nome em `orcamento.html` e o nome legível em `FLASHES` no arquivo `js/form.js`.
 4. Faça `git push`: a Vercel publica automaticamente.
 
 ## Deploy na Vercel
@@ -137,14 +159,15 @@ Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pages
 - [x] Fase 0: preparação
 - [x] Fase 1: Home
 - [x] Fase 2: galerias (`fineline.html`, `blackwork.html`), catálogo de flashes (`disponiveis.html`) e lightbox
-- [ ] Fase 3: orçamento e agendamento (formulário + abertura da DM no Instagram; Cal.com ou Calendly)
+- [x] Fase 3: página de orçamento (formulário, resumo, abertura do Instagram e espaço para o Cal.com)
+- [ ] Ativar a agenda Cal.com (preencher `data-cal-url`)
 - [ ] Fase 4: SEO e desempenho (sitemap, robots, Search Console, Perfil da Empresa no Google)
 - [ ] Fase 5: testes com clientes e lançamento
 
 ## Observações
 
-- Os orçamentos são feitos somente pelo Instagram ([@sizotto.ink](https://www.instagram.com/sizotto.ink)); o formulário do site apenas organiza o briefing.
-- Os botões "Faça um orçamento!", "Agende sua tattoo" e "Quero este flash" levam a `orcamento.html`, que será criada na Fase 3.
+- Os orçamentos são feitos somente pelo Instagram ([@sizotto.ink](https://www.instagram.com/sizotto.ink)); o formulário do site apenas organiza o briefing e não envia dados a nenhum servidor.
+- Atendimento somente para maiores de 18 anos.
 - As fotos do portfólio são trabalhos da tatuadora; use-as somente com autorização das clientes.
 - Se o site ganhar um domínio próprio, atualize o canonical, o Open Graph e o JSON-LD, hoje apontando para `sizottoink.vercel.app`.
 
