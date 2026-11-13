@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tatuagem Fineline em São Bernardo do Campo | Sizotto INK</title>
+  <meta name="description" content="Portfólio de tatuagens fineline da Sizotto INK: traços finos, delicados e pequenos desenhos com significado. Estúdio em São Bernardo do Campo.">
+  <meta name="theme-color" content="#1C0A00">
+  <link rel="canonical" href="https://sizottoink.vercel.app/fineline.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Tatuagem Fineline | Sizotto INK">
+  <meta property="og:description" content="Tatuagens fineline delicadas em São Bernardo do Campo.">
+  <meta property="og:image" content="https://sizottoink.vercel.app/img/fineline-snoopy.webp">
+  <meta property="og:url" content="https://sizottoink.vercel.app/fineline.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Montserrat:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="index.html" aria-label="Sizotto INK, voltar para a página inicial">Sizotto INK</a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="menu" class="nav__menu" aria-label="Principal">
+      <a href="index.html">Início</a>
+      <a href="fineline.html" aria-current="page">Fineline</a>
+      <a href="blackwork.html">Blackwork</a>
+      <a href="disponiveis.html">Disponíveis</a>
+      <a class="nav__cta" href="orcamento.html">Orçamento</a>
+    </nav>
+  </header>
+
+  <main class="page" id="conteudo">
+    <div class="container">
+      <section class="page-head">
+        <a class="back" href="index.html#portfolio">← Voltar ao portfólio</a>
+        <h1 class="section__title">Fineline</h1>
+        <p class="text">Traços finos e delicados para tatuagens pequenas e cheias de significado: frases, símbolos, flores e pequenos desenhos. Toque em uma foto para ampliar.</p>
+      </section>
+
+      <ul class="gallery" data-gallery aria-label="Galeria de tatuagens fineline">
+        <li><button class="thumb" type="button" aria-label="Ampliar foto: fada azul com estrelas"><img src="img/fineline-fada.webp" alt="Tatuagem fineline de uma fada azul com varinha e estrelas no antebraço" width="800" height="800" loading="lazy"></button></li>
+        <li><button class="thumb" type="button" aria-label="Ampliar foto: morango com corações"><img src="img/fineline-morango.webp" alt="Tatuagem fineline de um morango com corações vermelhos no braço" width="800" height="800" loading="lazy"></button></li>
+        <li><button class="thumb" type="button" aria-label="Ampliar foto: boné"><img src="img/fineline-bone.webp" alt="Tatuagem fineline de um boné no braço" width="800" height="800" loading="lazy"></button></li>
+        <li><button class="thumb" type="button" aria-label="Ampliar foto: cachorro sentado"><img src="img/fineline-snoopy.webp" alt="Tatuagem fineline pequena de um cachorro sentado no tornozelo" width="800" height="800" loading="lazy"></button></li>
+        <li><button class="thumb" type="button" aria-label="Ampliar foto: frase Continue a nadar"><img src="img/fineline-continue-a-nadar.webp" alt="Tatuagem fineline com a frase Continue a nadar em letra cursiva, com um pequeno desenho ao lado, na clavícula" width="800" height="800" loading="lazy"></button></li>
+        <li><button class="thumb" type="button" aria-label="Ampliar foto: frase forte como um 1950"><img src="img/fineline-forte-como-um-1950.webp" alt="Tatuagem fineline com a frase forte como um 1950 e o símbolo de touro no braço" width="800" height="800" loading="lazy"></button></li>
+      </ul>
+
+      <section class="page-cta">
+        <p class="page-cta__text">Quer uma fineline para você?</p>
+        <a class="btn btn--wine" href="orcamento.html">Faça um orçamento!</a>
+        <nav class="also" aria-label="Outras galerias">
+          <a href="blackwork.html">Ver blackwork e outros</a>
+          <a href="disponiveis.html">Ver flashes disponíveis</a>
+        </nav>
+      </section>
+    </div>
+  </main>
+
+  <footer class="section section--dark footer footer--simple">
+    <div class="container">
+      <ul class="footer__social">
+        <li><a href="https://www.instagram.com/sizotto.ink" target="_blank" rel="noopener">Instagram: @sizotto.ink</a></li>
+        <li><a href="https://www.tiktok.com/@sizotto.ink" target="_blank" rel="noopener">TikTok: @sizotto.ink</a></li>
+      </ul>
+      <p class="footer__copy">Todos os direitos reservados 2026 © Sizotto INK. O código e as imagens não podem ser copiados ou reutilizados sem autorização.</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" aria-hidden="true">
+    <button class="lightbox__btn lightbox__close" type="button" aria-label="Fechar">×</button>
+    <button class="lightbox__btn lightbox__prev" type="button" aria-label="Foto anterior">‹</button>
+    <img class="lightbox__img" alt="">
+    <p class="lightbox__cap"></p>
+    <p class="lightbox__count"></p>
+    <button class="lightbox__btn lightbox__next" type="button" aria-label="Próxima foto">›</button>
+  </div>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+</body>
+</html>
