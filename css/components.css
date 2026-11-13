@@ -136,6 +136,17 @@
 }
 .contact__links a:hover { text-decoration: underline; }
 
+.footer__copy {
+  margin-top: 28px; text-align: center;
+  font-size: .7rem; letter-spacing: .1em; line-height: 1.8; opacity: .85;
+}
+.footer--simple .footer__social {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px;
+  font-weight: 600; font-size: .78rem; letter-spacing: .14em;
+}
+.footer--simple .footer__social a { text-decoration: none; }
+.footer--simple .footer__social a:hover { text-decoration: underline; }
+
 /* ---------- Botão flutuante (mobile) ---------- */
 .fab {
   position: fixed; right: 16px; bottom: 16px; z-index: 40;
