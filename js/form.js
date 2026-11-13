@@ -1,7 +1,10 @@
 (function () {
   'use strict';
 
-  var IG_URL = 'https://ig.me/m/sizotto.ink';
+  // Abre o perfil em instagram.com (mesmo domínio dos links do rodapé).
+  // O link ig.me (DM direta) fica como botão secundário, pois esse domínio
+  // de redirecionamento pode ser lento ou bloqueado em algumas redes.
+  var IG_URL = 'https://www.instagram.com/sizotto.ink/';
   var FLASHES = {
     'tigre': 'Tigre',
     'tucano': 'Tucano',
@@ -148,7 +151,7 @@
   function setStatus(copied, opened) {
     var parts = [];
     parts.push(copied
-      ? 'Resumo copiado! Cole a mensagem na conversa com a Gabriela.'
+      ? 'Resumo copiado! No perfil da Gabriela, toque em "Mensagem" e cole o texto.'
       : 'Não consegui copiar automaticamente. Toque em "Copiar resumo" ou selecione o texto abaixo.');
     if (!opened) parts.push('Se o Instagram não abriu, toque em "Abrir Instagram".');
     statusEl.textContent = parts.join(' ');
@@ -180,7 +183,7 @@
   btnCopy.addEventListener('click', function () {
     copyText(out.value).then(function (copied) {
       statusEl.textContent = copied
-        ? 'Resumo copiado! Cole a mensagem na conversa com a Gabriela.'
+        ? 'Resumo copiado! No perfil da Gabriela, toque em "Mensagem" e cole o texto.'
         : 'Não consegui copiar automaticamente. Selecione o texto abaixo e copie.';
     });
   });
@@ -204,6 +207,3 @@
     agenda.appendChild(frame);
   }
 })();
-
-
-
