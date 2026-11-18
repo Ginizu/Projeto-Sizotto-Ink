@@ -6,7 +6,7 @@ O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flash
 
 **Site no ar:** [sizottoink.vercel.app](https://sizottoink.vercel.app/)
 
-> Status: **MVP em desenvolvimento**. Home (Fase 1), galerias com catálogo de flashes (Fase 2), página de orçamento (Fase 3) e SEO técnico (Fase 4) estão prontos. Faltam ativar a agenda Cal.com, concluir o Search Console e o Perfil da Empresa no Google, medir o Lighthouse e lançar.
+> Status: **MVP concluído e pronto para lançamento**. As fases 0 a 5 estão feitas: Home, galerias com catálogo de flashes, página de orçamento, SEO e desempenho, e testes com pessoas em celulares e computadores. Pendências pós-lançamento: ativar a agenda Cal.com, concluir o Search Console e o Perfil da Empresa no Google.
 
 ## Objetivos
 
@@ -23,7 +23,7 @@ O site apresenta o portfólio, a trajetória da tatuadora, o estúdio e os flash
 | RF01 | Agendamento de horários para clientes | Formulário de orçamento pronto; agenda Cal.com a ativar |
 | RF02 | Catálogo de tatuagens disponíveis | Pronto (`disponiveis.html`) |
 | RF03 | Redirecionamento para redes sociais | Pronto (Instagram e TikTok) |
-| RNF01 | A página deve carregar em menos de 2 segundos | A medir com Lighthouse |
+| RNF01 | A página deve carregar em menos de 2 segundos | Testado: Lighthouse acima de 90 na maioria dos critérios, sem travamentos em celulares e computadores |
 
 O PRD completo está documentado no Confluence/Claude Docs do projeto.
 
@@ -110,7 +110,8 @@ sizotto-ink/
 │   └── form.js              (validação, resumo, cópia, Instagram, Cal.com)
 ├── img/
 │   ├── og-capa.jpg          (1200x630, imagem ao compartilhar o link)
-│   ├── hero-corrente.webp
+│   ├── hero-corrente.webp          (hero no desktop, paisagem)
+│   ├── hero-corrente-mobile.webp   (hero no celular, retrato)
 │   ├── estudio.webp
 │   ├── fineline-*.webp      (fada, morango, bone, snoopy, continue-a-nadar, forte-como-um-1950)
 │   ├── blackwork-*.webp     (leme, correntes, personagem-escudo, coracao-olho, espada-fogueira, oni)
@@ -162,7 +163,17 @@ Ou use a extensão **Live Server** no VSCode.
 
 Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pagespeed.web.dev/) a cada deploy.
 
-### Checklist de lançamento (feito por você, na sua conta Google)
+### Imagens
+
+- Cards e galerias fineline/blackwork: recorte 3:4 centrado no desenho (a galeria quadrada corta só um pouco em cima e embaixo)
+- Flashes: recorte 9:16, exceto o tigre (3:4), porque também aparece no card da Home
+- Hero: versão em paisagem para o desktop e em retrato para o celular, escolhida por `<picture>`
+- Fotos de origem pequena (cerca de 460 px) usam a maior área possível centrada no desenho, para não borrar; recortes muito justos só funcionam com fotos originais em alta resolução
+- Para trocar uma foto, recorte centrada no desenho, com margem, e mantenha o mesmo nome do arquivo
+
+### Checklist pós-lançamento (feito na conta Google do estúdio)
+
+Os itens 1 e 2 já foram feitos; os demais seguem pendentes.
 
 1. **Publicar os arquivos:** envie ao GitHub `robots.txt`, `sitemap.xml`, `vercel.json`, `favicon.svg`, `404.html` e `img/og-capa.jpg`, além das páginas e CSS atualizados.
 2. **Lighthouse:** no Chrome, abra cada página, DevTools > Lighthouse > Mobile > Analisar. Metas: Performance ≥ 90, Accessibility ≥ 90, SEO ≥ 95. Se o Performance ficar abaixo, o primeiro suspeito são imagens acima de 200 KB.
@@ -186,17 +197,26 @@ Medir com o Lighthouse (Chrome DevTools) ou o [PageSpeed Insights](https://pages
 - [x] Fase 1: Home
 - [x] Fase 2: galerias (`fineline.html`, `blackwork.html`), catálogo de flashes (`disponiveis.html`) e lightbox
 - [x] Fase 3: página de orçamento (formulário, resumo, abertura do Instagram e espaço para o Cal.com)
+- [x] Fase 4: metadados, JSON-LD, sitemap, robots, cache, favicon, 404 e imagem de compartilhamento
+- [x] Fase 4: Lighthouse medido (acima de 90 na maioria dos critérios)
+- [x] Ajustes finais: sombra nos títulos, imagens recortadas e centralizadas no desenho, hero para desktop e celular, rodapé com direitos autorais
+- [x] Fase 5: testes com pessoas em celulares e computadores
+- [x] Lançamento: [sizottoink.vercel.app](https://sizottoink.vercel.app/)
+
+### Próximos passos
+
 - [ ] Ativar a agenda Cal.com (preencher `data-cal-url`)
-- [x] Fase 4 (código): metadados, JSON-LD, sitemap, robots, cache, favicon, 404 e imagem de compartilhamento
-- [ ] Fase 4 (sua parte): Lighthouse ≥ 90 medido, Search Console e Perfil da Empresa no Google (ver checklist)
-- [ ] Fase 5: testes com clientes e lançamento
+- [ ] Search Console: verificar o site, enviar o `sitemap.xml` e pedir a indexação
+- [ ] Completar o JSON-LD com endereço, telefone e horários
+- [ ] Criar um chat bot IA para FAQ
+- [ ] Registrar um domínio próprio e atualizar canonical, Open Graph, JSON-LD, `sitemap.xml` e `robots.txt`
 
 ## Observações
 
 - Os orçamentos são feitos somente pelo Instagram ([@sizotto.ink](https://www.instagram.com/sizotto.ink)); o formulário do site apenas organiza o briefing e não envia dados a nenhum servidor.
 - Atendimento somente para maiores de 18 anos.
 - As fotos do portfólio são trabalhos da tatuadora; use-as somente com autorização das clientes.
-- Se o site ganhar um domínio próprio, atualize o canonical, o Open Graph e o JSON-LD, hoje apontando para `sizottoink.vercel.app`.
+- Se o site ganhar um domínio próprio, atualize o canonical, o Open Graph, o JSON-LD, o `sitemap.xml` e o `robots.txt`, hoje apontando para `sizottoink.vercel.app`.
 
 ## Contato
 
