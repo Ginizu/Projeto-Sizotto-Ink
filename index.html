@@ -24,7 +24,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Montserrat:wght@400;500;600&display=swap">
-  <link rel="preload" as="image" href="img/hero-corrente.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-corrente-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-corrente.webp" media="(min-width: 768px)" fetchpriority="high">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -85,7 +86,10 @@
 
   <main id="conteudo">
     <section class="hero" id="topo">
-      <img class="hero__img" src="img/hero-corrente.webp" alt="Detalhe de tatuagem blackwork de corrente quebrada em pontilhismo no braço" width="1366" height="571" fetchpriority="high">
+      <picture>
+        <source media="(max-width: 767px)" srcset="img/hero-corrente-mobile.webp" width="800" height="1067">
+        <img class="hero__img" src="img/hero-corrente.webp" alt="Detalhe de tatuagem blackwork de corrente quebrada em pontilhismo no braço" width="1166" height="656" fetchpriority="high">
+      </picture>
       <div class="hero__overlay"></div>
       <div class="hero__content">
         <h1 class="hero__title">TATTOO</h1>
@@ -106,7 +110,7 @@
     </section>
 
     <section class="studio" id="estudio">
-      <img class="studio__img" src="img/estudio.webp" alt="Sala do estúdio Sizotto INK com maca preta, cadeira e janela de vidro" width="462" height="616" loading="lazy">
+      <img class="studio__img" src="img/estudio.webp" alt="Sala do estúdio Sizotto INK com maca preta, cadeira, mesa de luz e janela de vidro" width="1600" height="1340" loading="lazy">
       <div class="studio__overlay"></div>
       <div class="container container--text studio__content">
         <h2 class="section__title">Estúdio</h2>
@@ -121,19 +125,19 @@
         <ul class="cards">
           <li>
             <a class="card" href="fineline.html">
-              <img src="img/fineline-snoopy.webp" alt="Tatuagem fineline pequena de um cachorro sentado no tornozelo" width="462" height="616" loading="lazy">
+              <img src="img/fineline-snoopy.webp" alt="Tatuagem fineline pequena de um cachorro sentado no tornozelo" width="675" height="900" loading="lazy">
               <span class="card__label">Fineline</span>
             </a>
           </li>
           <li>
             <a class="card" href="blackwork.html">
-              <img src="img/blackwork-leme.webp" alt="Tatuagem blackwork de leme de navio quebrado no antebraço" width="462" height="616" loading="lazy">
+              <img src="img/blackwork-leme.webp" alt="Tatuagem blackwork de leme de navio quebrado no antebraço" width="750" height="1000" loading="lazy">
               <span class="card__label">Blackwork e outros</span>
             </a>
           </li>
           <li>
             <a class="card" href="disponiveis.html">
-              <img src="img/flash-tigre.webp" alt="Flash disponível de um tigre desenhado em preto sobre papel creme" width="345" height="614" loading="lazy">
+              <img src="img/flash-tigre.webp" alt="Flash disponível de um tigre desenhado em preto sobre papel creme" width="750" height="1000" loading="lazy">
               <span class="card__label">Disponíveis</span>
             </a>
           </li>
